@@ -1,297 +1,197 @@
-/* Pengaturan dasar */
+/* --- RESET --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* --- BODY --- */
 body {
-    /* Font harus diimpor di HTML */
-    font-family: 'Poppins', sans-serif; 
-    margin: 0;
-    padding: 0;
-    /* Latar belakang halaman: Gradien lembut netral */
-    background: linear-gradient(135deg, #f4f4f9 0%, #e8e8f0 100%); 
-    color: #333;
-    text-align: center;
-    font-size: 16px;
+  background: #fceefc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-/* Container utama untuk membatasi lebar konten */
+/* --- CARD CONTAINER --- */
 .container {
-    max-width: 700px; 
-    margin: 50px auto; 
-    padding: 30px; 
-    background-color: white;
-    border-radius: 15px; 
-    /* Shadow emas yang elegan */
-    box-shadow: 0 10px 30px rgba(215, 155, 60, 0.3); 
-    border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  padding: 30px 25px;
+  max-width: 380px;
+  width: 90%;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
-/* Area Logo */
+/* --- LOGO --- */
 .logo-area {
-    margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .product-logo {
-    width: 140px; 
-    height: 140px;
-    object-fit: cover; 
-    border-radius: 50%; 
-    /* Border utama menggunakan #D79B3C */
-    border: 7px solid #D79B3C; 
-    /* Shadow emas pada logo */
-    box-shadow: 0 5px 20px rgba(215, 155, 60, 0.8); 
-    transition: transform 0.3s ease;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
-.product-logo:hover {
-    transform: scale(1.05) rotate(2deg);
-}
-
-/* Teks dan Info Produk */
+/* --- TEKS PRODUK --- */
 .product-info h2 {
-    /* Judul menggunakan warna #D79B3C */
-    color: #D79B3C; 
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
+  color: #c18700;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
 }
 
 .product-info p {
-    line-height: 1.6;
-    color: #555;
-    margin-bottom: 25px;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
 }
 
-/* Tombol Dasar */
+/* --- BUTTON STYLE --- */
 .btn {
-    display: inline-block;
-    padding: 14px 30px;
-    margin: 10px;
-    border: none;
-    border-radius: 50px; 
-    cursor: pointer;
-    font-size: 17px;
-    font-weight: 600;
-    text-decoration: none; 
-    transition: all 0.3s ease;
-    text-align: center;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+  max-width: 300px;
+  margin: 6px auto;
+  transition: all 0.3s ease;
+  color: #fff;
 }
 
-/* Tombol 'ANDA MAU TAHU?' (Primary CTA - Emas) */
 .info-btn {
-    /* Gradien emas */
-    background: linear-gradient(45deg, #D79B3C, #C08A35); 
-    color: white;
-    padding: 18px 35px;
-    font-size: 20px;
-    box-shadow: 0 8px 20px rgba(215, 155, 60, 0.5); 
+  background: linear-gradient(135deg, #d29600, #b37700);
 }
 
-.info-btn:hover {
-    background: linear-gradient(45deg, #C08A35, #D79B3C); 
-    transform: translateY(-3px); 
-    box-shadow: 0 10px 25px rgba(215, 155, 60, 0.7);
-}
-
-/* Tombol WhatsApp (Secondary CTA - Hijau) */
 .whatsapp-btn {
-    /* Warna Hijau WhatsApp */
-    background-color: #25D366; 
-    color: white;
-    margin-top: 30px;
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5); 
+  background: linear-gradient(135deg, #00b853, #008f3f);
 }
 
-.whatsapp-btn:hover {
-    background-color: #1DA851; 
-    transform: translateY(-2px);
-    box-shadow: 0 7px 18px rgba(37, 211, 102, 0.7);
+.instagram-btn {
+  background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
 }
 
-/* Ikon WhatsApp (Gambar PNG) */
-.whatsapp-btn .whatsapp-icon {
-    width: 20px; 
-    height: auto;
-    margin-right: 10px;
-    vertical-align: middle; 
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
 }
 
-/* Teks kecil di bawah tombol WhatsApp */
+/* --- ICONS --- */
+.whatsapp-icon,
+.ig-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* --- SMALL TEXT --- */
 .small-text {
-    font-size: 13px;
-    color: #999;
-    margin-top: 10px;
-    font-style: italic;
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 8px;
 }
 
-/* ==================================== */
-/* STYLING TRIVIA BOX (FLOATING OVERLAY) */
-/* ==================================== */
-
+/* --- POPUP (TOMBOL MAU TAHU) --- */
 .trivia-box-wrapper {
-    /* Overlay Full Screen */
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    /* Animasi dan Sembunyikan Default */
-    opacity: 0; 
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-/* Class untuk MENAMPILKAN box (ditambahkan oleh JavaScript) */
-.trivia-box-wrapper.show {
-    opacity: 1;
-    visibility: visible;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
 
 .trivia-box-content {
-    /* Styling Box Konten */
-    max-width: 350px;
-    padding: 25px;
-    background-color: #fff; 
-    border: 3px solid #D79B3C; 
-    border-radius: 10px;
-    box-shadow: 0 15px 40px rgba(215, 155, 60, 0.5);
-    z-index: 1001; 
-    position: relative;
-    text-align: left;
-    
-    /* Animasi masuk */
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-}
-
-.trivia-box-wrapper.show .trivia-box-content {
-    transform: scale(1);
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .trivia-box-content h3 {
-    color: #D79B3C;
-    margin-top: 0;
-    font-size: 1.4em;
-    border-bottom: 2px solid #f0e68c; 
-    padding-bottom: 8px;
-    margin-bottom: 15px;
+  color: #c18700;
+  margin-bottom: 10px;
 }
 
-/* Tombol Tutup */
-.trivia-box-content .close-btn {
-    position: absolute;
-    top: 5px;
-    right: 15px;
-    font-size: 30px;
-    color: #999;
-    cursor: pointer;
-    line-height: 1;
-    transition: color 0.2s;
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 1.5rem;
+  color: #555;
+  cursor: pointer;
 }
 
-.trivia-box-content .close-btn:hover {
-    color: #D79B3C;
-}
-
-/* Styling untuk Tombol Next Trivia */
 .next-trivia-btn {
-    /* Gunakan warna aksen emas yang lebih lembut */
-    background-color: #F0E68C; /* Warna emas muda/khaki */
-    color: #333; /* Teks gelap agar kontras */
-    margin-top: 15px;
-    padding: 10px 20px;
-    font-size: 15px;
-    font-weight: 500;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    /* Ganti display menjadi block agar tidak menjadi kapsul penuh */
-    display: block; 
-    width: 100%;
+  background: #c18700;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 18px;
+  margin-top: 15px;
+  cursor: pointer;
 }
 
-.next-trivia-btn:hover {
-    background-color: #D79B3C; /* Warna emas utama saat hover */
-    color: white;
-    transform: translateY(-1px);
-    box-shadow: 0 5px 12px rgba(215, 155, 60, 0.4);
+/* --- RESPONSIVE --- */
+
+/* 📱 HP kecil (≤ 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 25px 18px;
+    max-width: 95%;
+  }
+
+  .product-info h2 {
+    font-size: 1.2rem;
+  }
+
+  .product-info p {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  .product-logo {
+    width: 80px;
+    height: 80px;
+  }
 }
 
-
-/* ---------------------------------- */
-/* Tombol Instagram / social - styling */
-/* ---------------------------------- */
-/* Gunakan gradien warna khas Instagram; disesuaikan agar cocok dengan tampilan */
-.instagram-btn {
-    background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
-    color: white;
-    padding: 12px 20px;
-    font-size: 15px;
-    border-radius: 50px;
-    box-shadow: 0 6px 18px rgba(131, 58, 180, 0.18);
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+/* 📲 Tablet kecil (481–768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    max-width: 420px;
+    padding: 30px 25px;
+  }
 }
 
-.instagram-btn:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 10px 30px rgba(131, 58, 180, 0.28);
-}
-
-/* Ikon IG kecil (PNG/SVG) di dalam tombol */
-.instagram-btn .ig-icon {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-/* Versi icon-only (lingkaran) jika diperlukan */
-.instagram-circle {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px;
-    box-shadow: 0 6px 18px rgba(131, 58, 180, 0.12);
-    background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
-}
-
-/* Varian responsif: pada layar kecil, tombol-sosial menjadi penuh lebar seperti tombol lain */
-@media (max-width: 600px) {
-    .instagram-btn {
-        width: 100%;
-        justify-content: center;
-    }
-    .instagram-circle {
-        width: 48px;
-        height: 48px;
-    }
-}
-
-/* Penyesuaian responsif */
-@media (max-width: 600px) {
-    .container {
-        margin: 20px;
-        padding: 20px;
-        border-radius: 10px;
-    }
-
-    .btn {
-        width: 100%; 
-        display: block;
-        margin-left: 0;
-        margin-right: 0;
-        font-size: 16px;
-    }
-
-    .info-btn {
-        padding: 15px 25px;
-    }
+/* 💻 Desktop besar (≥1024px) */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 450px;
+  }
 }
