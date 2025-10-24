@@ -1,16 +1,12 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+    const triviaBox = document.getElementById('trivia-popup');
     const showTriviaBtn = document.getElementById('show-trivia-btn');
-    const triviaPopup = document.getElementById('trivia-popup');
-    const closeBtn = triviaPopup.querySelector('.close-btn');
-    const triviaTextElement = triviaPopup.querySelector('.trivia-text');
-    
-    // Ambil elemen tombol Next
+    const closeBtn = triviaBox.querySelector('.close-btn');
     const nextTriviaBtn = document.getElementById('next-trivia-btn');
-    // Ambil semua tombol "tahu kah Anda" (bisa lebih dari satu)
-    const infoButtons = document.querySelectorAll('.info-btn');
-    
+    const triviaText = triviaBox.querySelector('.trivia-text');
+
     // Array berisi trivia bebas
-    const triviaList = [
+    const triviaFacts = [
         "Tahu kah Anda bahwa di planet Saturnus dan Jupiter hujan bisa berupa berlian sungguhan?",
         "Tahu kah Anda bahwa di Tanzania ada danau bernama Natron yang bisa mengawetkan hewan seperti patung karena kadar alkalinya ekstrem?",
         "Tahu kah Anda bahwa Gurun Atacama di Chili pernah tidak turun hujan selama lebih dari 400 tahun?",
@@ -114,83 +110,46 @@ document.addEventListener('DOMContentLoaded', (event) => {
         "Tahu kah Anda bahwa detak jantung paus biru dapat terdengar dari jarak lebih dari 3 kilometer di bawah air?"
     ];
 
-    // State runtime untuk urutan acak dan index saat ini
-    let shuffledTrivia = [];
-    let currentIndex = 0;
+    let currentTriviaIndex = 0;
 
-    // Fisher-Yates shuffle
-    function shuffleArray(array) {
-        const a = array.slice();
-        for (let i = a.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [a[i], a[j]] = [a[j], a[i]];
-        }
-        return a;
+    // Safe-guard: ensure required elements exist
+    if (!triviaBox || !showTriviaBtn || !closeBtn || !nextTriviaBtn || !triviaText) {
+        console.warn('trivia.js: missing required DOM elements.');
+        return;
     }
 
-    // Tampilkan trivia berdasarkan urutan acak saat ini
-    function displayCurrentTrivia() {
-        if (!shuffledTrivia || shuffledTrivia.length === 0) {
-            triviaTextElement.textContent = 'Tidak ada trivia tersedia.';
-            return;
-        }
-        // Jaga index tetap dalam rentang
-        if (currentIndex < 0) currentIndex = 0;
-        if (currentIndex >= shuffledTrivia.length) currentIndex = shuffledTrivia.length - 1;
-        triviaTextElement.textContent = shuffledTrivia[currentIndex];
+    // Ensure popup is hidden initially
+    triviaBox.style.display = triviaBox.style.display || 'none';
+
+    function showTrivia() {
+        triviaText.textContent = triviaFacts[currentTriviaIndex];
+        triviaBox.style.display = 'flex';
     }
 
-    // Inisialisasi urutan acak baru dan tampilkan item pertama
-    function startNewShuffledList() {
-        shuffledTrivia = shuffleArray(triviaList);
-        currentIndex = 0;
-        displayCurrentTrivia();
+    function hideTrivia() {
+        triviaBox.style.display = 'none';
     }
 
-    // Pastikan semua elemen ada sebelum menambahkan event listener
-    if (triviaPopup && closeBtn && triviaTextElement && nextTriviaBtn) {
+    showTriviaBtn.addEventListener('click', function() {
+        showTrivia();
+    });
 
-        // Jika ada beberapa tombol dengan class .info-btn, daftarkan handler ke semuanya
-        if (infoButtons && infoButtons.length > 0) {
-            infoButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    startNewShuffledList();
-                    triviaPopup.classList.add('show');
-                });
-            });
-        } else if (showTriviaBtn) {
-            // Backward compatible: jika hanya ada tombol dengan id
-            showTriviaBtn.addEventListener('click', function() {
-                startNewShuffledList();
-                triviaPopup.classList.add('show');
-            });
-        }
+    closeBtn.addEventListener('click', function() {
+        hideTrivia();
+    });
 
-        // Next: maju ke trivia berikutnya; jika habis, acak ulang dan mulai dari awal
-        nextTriviaBtn.addEventListener('click', function() {
-            if (!shuffledTrivia || shuffledTrivia.length === 0) {
-                startNewShuffledList();
-                return;
-            }
-            currentIndex += 1;
-            if (currentIndex >= shuffledTrivia.length) {
-                // Sudah mencapai akhir — acak ulang dan mulai lagi
-                shuffledTrivia = shuffleArray(triviaList);
-                currentIndex = 0;
-            }
-            displayCurrentTrivia();
-        });
+    nextTriviaBtn.addEventListener('click', function() {
+        currentTriviaIndex = (currentTriviaIndex + 1) % triviaFacts.length;
+        triviaText.textContent = triviaFacts[currentTriviaIndex];
+    });
 
-        // Tutup popup
-        closeBtn.addEventListener('click', function() {
-            triviaPopup.classList.remove('show');
-        });
+    // Close when clicking outside the content area (overlay)
+    triviaBox.addEventListener('click', function(e) {
+        if (e.target === triviaBox) hideTrivia();
+    });
 
-        // Tutup saat mengklik overlay di luar konten
-        triviaPopup.addEventListener('click', function(event) {
-            if (event.target === triviaPopup) {
-                triviaPopup.classList.remove('show');
-            }
-        });
-    }
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') hideTrivia();
+    });
 });
